@@ -1,25 +1,18 @@
+import { useState } from "react";
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import {Product} from './component/Product';
+import {products} from './data/products'
 function App() {
+
+   const[count,setCount]= useState(0)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <div className="container mx-auto max-w-2xl pt-5">
+      <Product product={products[0]}/>
+      <Product product={products[1] }/>
+    
+   {/*<h1>Test JS {count}</h1>
+   <button  className="py-2  px-4">Click me</button>*/}
+   </div>
   );
 }
 
