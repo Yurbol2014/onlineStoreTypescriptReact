@@ -3,6 +3,7 @@ import { useState } from "react";
 import { IProduct } from "../models";
 import axios from 'axios';
 import { ErrorMessage } from "./ErrorMessage";
+import { Product } from './Product';
 
 
 const productData: IProduct = {
@@ -18,10 +19,10 @@ const productData: IProduct = {
 }
 
 interface CreateProductProps {
-   onCreate: () => void
+   onCreate: (product:IProduct) => void
 }
 
-export function  CreateProduct() {
+export function  CreateProduct({onCreate}: CreateProductProps) {
 
    const [value, setValue] = useState('')
    const [error, setError] = useState('')
@@ -38,7 +39,10 @@ export function  CreateProduct() {
       productData.title = value
 
      const response = await axios.post<IProduct>("https://fakestoreapi.com/products",productData)
-    }
+    
+      onCreate(response.data)
+   
+   }
 
     const changeHandler =(event: React.ChangeEvent<HTMLInputElement>)=>{
     
